@@ -7,7 +7,7 @@ const Invoice = require('../../models/Invoice');
 // @route GET api/invoices
 // @description Get all invoices
 // @access Public
-router.get('/', (req, res) => {
+router.get('/invoices', (req, res) => {
     const { status } = req.query;
     if (status) {
         Invoice.find({ status })
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 // @route GET api/invoices/:id
 // @description Get single invoice by id
 // @access Public
-router.get('/:id', (req, res) => {
+router.get('/invoices/:id', (req, res) => {
     Invoice.findById(req.params.id)
         .then(invoice => res.json(invoice))
         .catch(err => res.status(404).json({ noinvoicefound: 'No Invoice found' }));
@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 // @route GET api/invoices
 // @description add/save invoice
 // @access Private
-router.post('/', (req, res) => {
+router.post('/invoices', (req, res) => {
     Invoice.create(req.body)
         .then(invoice => res.json({ msg: 'Invoice added successfully' }))
         .catch(err => res.status(400).json({ error: err }));
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
 // @route GET api/invoices/:id
 // @description Update invoice
 // @access Private
-router.put('/:id', (req, res) => {
+router.put('/invoices/:id', (req, res) => {
     Invoice.findByIdAndUpdate(req.params.id, req.body)
         .then(invoice => res.json({ msg: 'Updated successfully' }))
         .catch(err =>
@@ -52,7 +52,7 @@ router.put('/:id', (req, res) => {
 // @route GET api/invoices/:id
 // @description Delete invoice by id
 // @access Private
-router.delete('/:id', (req, res) => {
+router.delete('/invoices/:id', (req, res) => {
     Invoice.findByIdAndRemove(req.params.id, req.body)
         .then(invoice => res.json({ mgs: 'Invoice entry deleted successfully' }))
         .catch(err => res.status(404).json({ error: 'No such an Invoice' }));
