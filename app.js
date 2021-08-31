@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const connectDB = require('./config/db');
 
 // routes
@@ -19,5 +19,5 @@ app.get('/', (req, res) => {
 app.use('/api/invoices', invoices);
 
 app.listen(port, () => {
-    console.log(`Server is started at http://localhost:${port}`)
+    console.log('Server is started');
 })
