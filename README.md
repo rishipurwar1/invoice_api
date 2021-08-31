@@ -1,10 +1,10 @@
 # Invoice API
 
-## Base URL: [https://invoicesapi.herokuapp.com/api](https://invoicesapi.herokuapp.com/api)
+## Base URL: [https://invoicesapi.herokuapp.com/api](https://invoicesapi.herokuapp.com/api/)
 
 ### Endpoints:
 - To GET all the invoices: [/invoices](https://invoicesapi.herokuapp.com/api/invoices)
-- To GET a single invoices: [/invoices/:id](https://invoicesapi.herokuapp.com/api/invoices/612e23c967a7439df0d5425e)
+- To GET a single invoices: [/invoices/:id](https://invoicesapi.herokuapp.com/api/invoices/612e2576367bd99e13c40610)
 - To POST a new invoice: [/invoices](https://invoicesapi.herokuapp.com/api/invoices)
 - To DELETE a new invoice: [/invoices/:id](https://invoicesapi.herokuapp.com/api/invoices)
 - To UPDATE a new invoice: [/invoices/:id](https://invoicesapi.herokuapp.com/api/invoices/)
