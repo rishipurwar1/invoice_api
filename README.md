@@ -11,3 +11,6 @@
 - Query the invoices using **status** parameter: [/invoices?status=paid](https://invoicesapi.herokuapp.com/api/invoices?status=paid)
 
 > Note: **status** parameter can be any of the following values: [paid](https://invoicesapi.herokuapp.com/api/invoices?status=paid), [pending](https://invoicesapi.herokuapp.com/api/invoices?status=pending) and [draft](https://invoicesapi.herokuapp.com/api/invoices?status=draft)
+
+### Tech Stack:
+NodeJs, ExpressJs and MongoDB

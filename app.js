@@ -16,7 +16,7 @@ app.set('view engine', 'ejs')
 // Connect Database
 connectDB();
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.render('index')
 });
 
