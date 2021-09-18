@@ -10,6 +10,16 @@ const invoices = require('./routes/api/invoices');
 // Init Middleware
 app.use(express.json({ extended: false }));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', "*");
+    res.setHeader('Access-Control-Allow-Methods', "POST,GET,OPTIONS");
+    res.setHeader('Access-Control-Allow-Headers', "Content-Type, Authorization");
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
