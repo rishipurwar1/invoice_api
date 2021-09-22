@@ -11,7 +11,7 @@ const invoices = require("./routes/api/invoices");
 // Init Middleware
 app.use(express.json({ extended: false }));
 var corsOptions = {
-  origin: "http://localhost:5000/",
+  origin: "https://invoicesapi.herokuapp.com",
   optionsSuccessStatus: 200,
 };
 
