@@ -10,12 +10,7 @@ const invoices = require("./routes/api/invoices");
 
 // Init Middleware
 app.use(express.json({ extended: false }));
-var corsOptions = {
-  origin: "https://invoicesapi.herokuapp.com",
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
