@@ -45,7 +45,7 @@ const InvoiceSchema = new mongoose.Schema({
   clientCountry: {
     type: "String",
   },
-  items: {
+  invoices: {
     type: ["Mixed"],
   },
   total: {

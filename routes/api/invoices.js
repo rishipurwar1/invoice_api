@@ -40,12 +40,12 @@ router.get("/invoices/:id", (req, res) => {
 // @access Private
 router.post("/invoices", (req, res) => {
   let total = 0;
-  req.body.items.forEach((item) => {
+  req.body.invoices.forEach((item) => {
     total += item.total;
   });
   req.body.total = total;
   Invoice.create(req.body)
-    .then((invoice) => res.json({ msg: "Invoice added successfully", invoice }))
+    .then((invoice) => res.json(invoice))
     .catch((err) => res.status(400).json({ error: err }));
 });
 
