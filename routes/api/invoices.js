@@ -52,7 +52,7 @@ router.post("/invoices", (req, res) => {
 // @route GET api/invoices/:id
 // @description Update invoice
 // @access Private
-router.put("/invoices/:id", (req, res) => {
+router.patch("/invoices/:id", (req, res) => {
   Invoice.findByIdAndUpdate(req.params.id, req.body)
     .then((invoice) => res.json({ msg: "Updated successfully" }))
     .catch((err) =>
