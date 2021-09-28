@@ -1,4 +1,5 @@
 const express = require("express");
+const { Mongoose } = require("mongoose");
 const router = express.Router();
 
 // Load Invoice model
@@ -68,5 +69,11 @@ router.delete("/invoices/:id", (req, res) => {
     .then((invoice) => res.json({ mgs: "Invoice entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such an Invoice" }));
 });
+
+router.patch("/invoices/:id/paid", async (req, res) => {
+  const {id} = req.params;
+  const updatedInvoice = await Invoice.findByIdAndUpdate(id, {status: "paid"}, {new: true});
+  res.json(updatedInvoice)
+})
 
 module.exports = router;
