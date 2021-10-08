@@ -1,14 +1,15 @@
 const express = require("express");
 const { Mongoose } = require("mongoose");
+const auth = require("../middleware/auth");
 const router = express.Router();
 
 // Load Invoice model
-const Invoice = require("../../models/Invoice");
+const Invoice = require("../models/Invoice");
 
 // @route GET api/invoices
 // @description Get all invoices
 // @access Public
-router.get("/invoices", (req, res) => {
+router.get("/", (req, res) => {
   const { status } = req.query;
   if (status) {
     Invoice.find({ status })
@@ -28,7 +29,7 @@ router.get("/invoices", (req, res) => {
 // @route GET api/invoices/:id
 // @description Get single invoice by id
 // @access Public
-router.get("/invoices/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   Invoice.findById(req.params.id)
     .then((invoice) => res.json(invoice))
     .catch((err) =>
@@ -39,7 +40,7 @@ router.get("/invoices/:id", (req, res) => {
 // @route GET api/invoices
 // @description add/save invoice
 // @access Private
-router.post("/invoices", (req, res) => {
+router.post("/", auth, (req, res) => {
   let total = 0;
   req.body.invoices.forEach((item) => {
     total += item.total;
@@ -53,7 +54,7 @@ router.post("/invoices", (req, res) => {
 // @route GET api/invoices/:id
 // @description Update invoice
 // @access Private
-router.patch("/invoices/:id", (req, res) => {
+router.patch("/:id", auth, (req, res) => {
   Invoice.findByIdAndUpdate(req.params.id, req.body)
     .then((invoice) => res.json({ msg: "Updated successfully" }))
     .catch((err) =>
@@ -64,16 +65,20 @@ router.patch("/invoices/:id", (req, res) => {
 // @route GET api/invoices/:id
 // @description Delete invoice by id
 // @access Private
-router.delete("/invoices/:id", (req, res) => {
+router.delete("/:id", auth, (req, res) => {
   Invoice.findByIdAndRemove(req.params.id, req.body)
     .then((invoice) => res.json({ mgs: "Invoice entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such an Invoice" }));
 });
 
-router.patch("/invoices/:id/paid", async (req, res) => {
-  const {id} = req.params;
-  const updatedInvoice = await Invoice.findByIdAndUpdate(id, {status: "paid"}, {new: true});
-  res.json(updatedInvoice)
-})
+router.patch("/:id/paid", auth, async (req, res) => {
+  const { id } = req.params;
+  const updatedInvoice = await Invoice.findByIdAndUpdate(
+    id,
+    { status: "paid" },
+    { new: true }
+  );
+  res.json(updatedInvoice);
+});
 
 module.exports = router;

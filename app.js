@@ -6,7 +6,8 @@ const port = process.env.PORT || 5000;
 const connectDB = require("./config/db");
 
 // routes
-const invoices = require("./routes/api/invoices");
+const invoicesRoutes = require("./routes/invoices");
+const userRoutes = require("./routes/users");
 
 // Init Middleware
 app.use(express.json({ extended: false }));
@@ -22,7 +23,8 @@ app.get("/api", (req, res) => {
   res.render("index");
 });
 
-app.use("/api", invoices);
+app.use("/invoices", invoicesRoutes);
+app.use("/user", userRoutes);
 
 app.listen(port, () => {
   console.log("Server is started");
