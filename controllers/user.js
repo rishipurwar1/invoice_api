@@ -28,19 +28,23 @@ const signin = async (req, res) => {
 };
 
 const signup = async (req, res) => {
-  const { email, password } = req.body;
-
+  const { name, email, password } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser)
       return res.status(404).json({ message: "User already exist." });
     const hashedPassword = await bcrypt.hash(password, 12);
-    const result = await User.create({ email, password: result });
-    const token = jwt.sign({ email: result.email, id: result._id }, "test", {
-      expiresIn: "1h",
-    });
+    const result = await User.create({ name, email, password: hashedPassword });
+    const token = jwt.sign(
+      { name: result.name, email: result.email, id: result._id },
+      "test",
+      {
+        expiresIn: "1h",
+      }
+    );
     res.status(200).json({ result: result, token });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Something went wrong" });
   }
 };

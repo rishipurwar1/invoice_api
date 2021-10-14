@@ -51,6 +51,9 @@ const InvoiceSchema = new mongoose.Schema({
   total: {
     type: "Number",
   },
+  creator: {
+    type: "String",
+  },
 });
 
 InvoiceSchema.set("timestamps", true);
