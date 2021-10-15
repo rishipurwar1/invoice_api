@@ -1,4 +1,5 @@
 const express = require("express");
+
 const {
   getInvoices,
   createInvoice,
@@ -10,7 +11,6 @@ const {
 const auth = require("../middleware/auth");
 
 const router = express.Router();
-// Load Invoice model
 
 router.get("/", getInvoices);
 router.post("/", auth, createInvoice);
