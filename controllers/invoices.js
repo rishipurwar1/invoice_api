@@ -25,7 +25,7 @@ const createInvoice = (req, res) => {
   });
   // req.body.total = total;
   Invoice.create({ ...invoice, creator: req.userId, total })
-    .then((invoice) => console.log(invoice))
+    .then((invoice) => res.json(invoice))
     .catch((err) => res.status(400).json({ error: err }));
 };
 
