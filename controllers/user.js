@@ -44,7 +44,6 @@ const signup = async (req, res) => {
     );
     res.status(200).json({ result: result, token });
   } catch (error) {
-    console.log(error, "Something went wrong");
     res.status(500).json({ message: "Something went wrong" });
   }
 };

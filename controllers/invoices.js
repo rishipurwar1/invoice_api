@@ -20,9 +20,10 @@ const getInvoices = (req, res) => {
 const createInvoice = (req, res) => {
   const invoice = req.body;
   let total = 0;
-  req.body.invoices.forEach((item) => {
-    total += item.total;
-  });
+  req.body.invoices &&
+    req.body.invoices.forEach((item) => {
+      total += item.total;
+    });
   // req.body.total = total;
   Invoice.create({ ...invoice, creator: req.userId, total })
     .then((invoice) => res.json(invoice))
@@ -30,8 +31,8 @@ const createInvoice = (req, res) => {
 };
 
 const updateInvoice = (req, res) => {
-  Invoice.findByIdAndUpdate(req.params.id, req.body)
-    .then((invoice) => res.json({ msg: "Updated successfully" }))
+  Invoice.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((invoice) => res.json(invoice))
     .catch((err) =>
       res.status(400).json({ error: "Unable to update the Database" })
     );
