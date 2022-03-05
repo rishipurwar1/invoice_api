@@ -10,7 +10,7 @@
 - To UPDATE a new invoice: [/invoices/:id](https://invoicesapi.herokuapp.com/invoices/)
 - Query the invoices using **status** parameter: [/invoices?status=paid](https://invoicesapi.herokuapp.com/invoices?status=paid)
 
-> Note: **status** parameter can be any of the following values: [paid](https://invoicesapi.herokuapp.com/api/invoices?status=paid), [pending](https://invoicesapi.herokuapp.com/api/invoices?status=pending) and [draft](https://invoicesapi.herokuapp.com/api/invoices?status=draft)
+> Note: **status** parameter can be any of the following values: [paid](https://invoicesapi.herokuapp.com/invoices?status=paid), [pending](https://invoicesapi.herokuapp.com/invoices?status=pending) and [draft](https://invoicesapi.herokuapp.com/invoices?status=draft)
 
 ### Tech Stack:
 
